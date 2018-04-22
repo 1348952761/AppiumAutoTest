@@ -1,7 +1,0 @@
-2018-04-22 15:42:27,709 INFO :Logger is initialized
-2018-04-22 15:42:27,713 DEBUG :POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"alwaysMatch": {"platformName": "Android"}, "firstMatch": [{}]}, "desiredCapabilities": {"deviceName": "192.168.22.101:5555", "device_port": "4723", "platformVersion": "6.0", "appPackage": "com.android.calculator2", "platformName": "Android", "appActivity": ".Calculator"}}
-2018-04-22 15:42:30,618 DEBUG :Finished Request
-2018-04-22 15:42:33,618 INFO :项目 初始化 成功！！！
-2018-04-22 15:42:33,619 INFO :点击 1 
-2018-04-22 15:42:33,621 DEBUG :DELETE http://127.0.0.1:4723/wd/hub/session/f9a02d40-2aa9-44ea-8379-6c6219ff0f71 {"sessionId": "f9a02d40-2aa9-44ea-8379-6c6219ff0f71"}
-2018-04-22 15:42:34,729 DEBUG :Finished Request
