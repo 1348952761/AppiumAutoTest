@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 
 project_config = {
-
+    # "project": "AppiumAutoTest",
     "platformName": "Android",
     "deviceName": "192.168.22.101:5555",
     "platformVersion": "6.0",

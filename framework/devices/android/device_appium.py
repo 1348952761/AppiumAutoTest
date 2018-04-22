@@ -1,14 +1,97 @@
 # coding:utf-8
 import time
+import traceback
+from functools import wraps
 
 from framework import Var
+from framework.common.CommonLog import *
 from appium import webdriver
 from urllib2 import URLError
 from selenium.common.exceptions import ErrorInResponseException
 from selenium.common.exceptions import WebDriverException
 
 
+def retry(tries=1, delay=1, backoff=1, logger=None):
+    def deco_retry(f):
+        @wraps(f)   # 属性复制，相当于 f_retry.__name__ = f.__name__
+        def f_retry(*args, **kwargs):
+            mtries, mdelay = tries, delay
+            while mtries > 0:
+                result = None
+                try:
+                    result = f(*args, **kwargs)
+                except Exception as e:
+                    if "try again" in str(e):
+                        continue
+                if result is None:
+                    try:
+                        retry_flag = False
+                        if Var.unexpect_element:
+                            if not retry_flag and Var.unexpect_element.has_key("name"):
+                                for name in Var.unexpect_element["name"]:
+                                    try:
+                                        view = Var.driver_instance.find_elements_by_android_uiautomator("new UiSelector().text(\"%s\")"%name)
+                                        if view:
+                                            view.click()
+                                            retry_flag = True
+                                            break
+                                    except:
+                                        pass
+
+                                    try:
+                                        view = Var.driver_instance.find_elements_by_android_uiautomator(
+                                            "new UiSelector().description(\"%s\")"% name)
+                                        if view:
+                                            view.click()
+                                            retry_flag = True
+                                            break
+                                    except:
+                                        pass
+
+                            if not retry_flag and Var.unexpect_element.has_key("id"):
+                                for id in Var.unexpect_element["id"]:
+                                    try:
+                                        view = Var.driver_instance.find_elements_by_android_uiautomator(
+                                            "new UiSelector().resourceId(\"%s\")"%id)
+                                        if view:
+                                            view.click()
+                                            retry_flag = True
+                                            break
+                                    except:
+                                        pass
+
+                            if not retry_flag and Var.unexpect_element.has_key("xpath"):
+                                for id in Var.unexpect_element["id"]:
+                                    try:
+                                        view = Var.driver_instance.find_elements_by_xpath(xpath)
+                                        if view:
+                                            view.click()
+                                            retry_flag = True
+                                            break
+                                    except:
+                                        pass
+                    except Exception as e:
+                        traceback.print_exc()
+                        pass
+                    msg = "Retrying in " + str(mdelay) + " seconds..."
+                else:
+                    break
+
+                if logger:
+                    logger.warning(msg)
+                else:
+                    print (msg)
+                time.sleep(mdelay)
+                mtries -= 1
+                mdelay *= backoff
+            return result
+        return f_retry
+    return deco_retry
+
+
 def ProcessException(e):
+    msg = traceback.format_exc()
+    print_error(msg)
     if isinstance(e,(AttributeError,URLError,ErrorInResponseException,WebDriverException)):
         # start_server(Var.sn)
         Var.driver_instance = webdriver.Remote('http://localhost:{}/wd/hub'.format(Var.device_port), Var.desired_caps)
@@ -18,22 +101,22 @@ def ProcessException(e):
 
 class AndroidDevice(object):
     @staticmethod
-    # @retry
+    @retry()
     def pinch():
         pass
 
     @staticmethod
-    # @retry
+    @retry()
     def zoom():
         pass
 
     @staticmethod
-    # @retry
+    @retry()
     def pinch():
         pass
 
     @staticmethod
-    # @retry
+    @retry()
     def swipe_to_begin(during=200):
         width = Var.driver_instance.get_window_size()['width'] / 2
         height = Var.driver_instance.get_window_size()['height'] /2
@@ -41,7 +124,7 @@ class AndroidDevice(object):
         return True
 
     @staticmethod
-    # @retry
+    @retry()
     def swipe_to_end(during=200):
         width = Var.driver_instance.get_window_size()['width'] / 2
         height = Var.driver_instance.get_window_size()['height'] / 2
@@ -49,7 +132,7 @@ class AndroidDevice(object):
         return True
 
     @staticmethod
-    # @retry
+    @retry()
     def swipe_to_right(during=200):
         width = Var.driver_instance.get_window_size()['width'] / 2
         height = Var.driver_instance.get_window_size()['height'] / 2
@@ -57,7 +140,7 @@ class AndroidDevice(object):
         return True
 
     @staticmethod
-    # @retry
+    @retry()
     def swipe_to_left(during=200):
         width = Var.driver_instance.get_window_size()['width'] / 2
         height = Var.driver_instance.get_window_size()['height'] / 2
@@ -100,7 +183,7 @@ class AndroidDevice(object):
         return element.get_attribute("name")
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_text(text_str="", single=True):
         element = None
         try:
@@ -117,7 +200,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_text(text_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -136,7 +219,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_text_contains(text_str="", single=True):
         element = None
         try:
@@ -153,7 +236,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_text_contains(text_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -172,7 +255,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_classname(classname="", single=True):
         element = None
         try:
@@ -190,7 +273,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_id(id_str="", single=True):
         element = None
         try:
@@ -210,7 +293,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_id(id_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -230,7 +313,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_id_contains(id_str="", single=True):
         element = None
         try:
@@ -248,7 +331,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_id_contains(id_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -268,7 +351,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_desc(desc_str="", single=True):
         element = None
         try:
@@ -286,7 +369,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_desc(desc_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -306,7 +389,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_desc_contains(desc_str="", single=True):
         element = None
         try:
@@ -324,7 +407,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_scroll_by_desc_contains(desc_str="", step=100):
         width = Var.driver_instance.get_window_size()["width"]
         height = Var.driver_instance.get_window_size()["height"]
@@ -344,7 +427,7 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_ui_object_by_xpath(xpath="", single=True):
         element = None
         try:
@@ -359,10 +442,11 @@ class AndroidDevice(object):
             return element
 
     @staticmethod
-    # @retry
+    @retry()
     def get_accurate_x_y(ui_object, ratio_x, ratio_y):
         length = ui_object.info["bounds"]["right"] - ui_object.info["bounds"]["left"]
         height = ui_object.info["bounds"]["bottom"] - ui_object.info["bounds"]["top"]
         x = ui_object.info["bounds"]["left"] + length * ratio_x
         x = ui_object.info["bounds"]["top"] + length * ratio_y
         return x, y
+

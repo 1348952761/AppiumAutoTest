@@ -1,0 +1,32 @@
+2018-04-22 17:24:36,785 INFO :Logger is initialized
+2018-04-22 17:24:36,793 DEBUG :POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"alwaysMatch": {"platformName": "Android"}, "firstMatch": [{}]}, "desiredCapabilities": {"deviceName": "192.168.22.101:5555", "device_port": "4723", "platformVersion": "6.0", "appPackage": "com.android.calculator2", "platformName": "Android", "appActivity": ".Calculator"}}
+2018-04-22 17:24:39,951 DEBUG :Finished Request
+2018-04-22 17:24:42,953 INFO :项目 初始化 成功！！！
+2018-04-22 17:24:42,953 INFO :Step 1: 点击 1 
+2018-04-22 17:24:42,954 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/elements {"using": "-android uiautomator", "sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "value": "new UiSelector().resourceId(\"com.android.calculator2:id/digit_1\")"}
+2018-04-22 17:24:43,005 DEBUG :Finished Request
+2018-04-22 17:24:43,005 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/element/1/size {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "id": "1"}
+2018-04-22 17:24:43,019 DEBUG :Finished Request
+2018-04-22 17:24:43,019 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/element/1/size {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "id": "1"}
+2018-04-22 17:24:43,036 DEBUG :Finished Request
+2018-04-22 17:24:43,036 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/element/1/location {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "id": "1"}
+2018-04-22 17:24:43,046 DEBUG :Finished Request
+2018-04-22 17:24:43,046 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/element/1/location {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "id": "1"}
+2018-04-22 17:24:43,058 DEBUG :Finished Request
+2018-04-22 17:24:43,059 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/touch/perform {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "actions": [{"action": "tap", "options": {"y": 1901, "x": 208, "count": 1}}]}
+2018-04-22 17:24:43,184 DEBUG :Finished Request
+2018-04-22 17:24:47,184 INFO :Step 2: 点击 + 号
+2018-04-22 17:24:47,184 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/elements {"using": "-android uiautomator", "sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "value": "new UiSelector().resourceId(\"com.android.calculator2:id/op_add555\")"}
+2018-04-22 17:24:47,253 DEBUG :Finished Request
+2018-04-22 17:24:47,253 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/elements {"using": "-android uiautomator", "sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "value": "new UiSelector().text(\"\u5141\u8bb8\")"}
+2018-04-22 17:24:47,286 DEBUG :Finished Request
+2018-04-22 17:24:47,286 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/elements {"using": "-android uiautomator", "sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "value": "new UiSelector().description(\"\u5141\u8bb8\")"}
+2018-04-22 17:24:47,328 DEBUG :Finished Request
+2018-04-22 17:24:47,328 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9/elements {"using": "-android uiautomator", "sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9", "value": "new UiSelector().resourceId(\"com.android.packageinstaller:id/permission_allow_button\")"}
+2018-04-22 17:24:47,381 DEBUG :Finished Request
+2018-04-22 17:24:48,381 ERROR :           ！！！！！raise a exception！！！！！
+2018-04-22 17:24:48,381 ERROR :Can't find id:com.android.calculator2:id/op_add555
+None
+2018-04-22 17:24:48,381 ERROR :
+2018-04-22 17:24:48,381 DEBUG :DELETE http://127.0.0.1:4723/wd/hub/session/38cb48ed-022f-4eca-9bdc-41ee407bd1d9 {"sessionId": "38cb48ed-022f-4eca-9bdc-41ee407bd1d9"}
+2018-04-22 17:24:49,612 DEBUG :Finished Request

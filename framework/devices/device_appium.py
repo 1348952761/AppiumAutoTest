@@ -1,19 +1,26 @@
 # coding:utf-8
 import time
+import traceback
+from framework.common.CommonLog import *
 from framework import Var
-from framework.tools.android.driver_appium import AndroidDevice
-from framework.tools.ios.driver_appium import iOSDevice
+from framework.devices.android.device_appium import AndroidDevice
+from framework.devices.ios.device_appium import iOSDevice
 
 try:
     if str(Var.platformName.lower()) == "android":
         device_instance = AndroidDevice
+        Var.device_type = "android"
     elif str(Var.platformName.lower()) == "ios":
         device_instance = iOSDevice
+        Var.device_type = "iOS"
     else:
         raise Exception("In config.py, platformName is not android or ios !")
+
+
 except:
     # 默认设备为 android
     device_instance = AndroidDevice
+    Var.device_type = "android"
 
 
 class Device(object):
@@ -68,4 +75,8 @@ class Device(object):
             time.sleep(1)
         else:
             if check:
-                raise Exception("Can't find id:%s" % resource_id)
+                e = Exception("Can't find id:%s" % resource_id)
+                print_error("           ！！！！！raise a exception！！！！！")
+                print_exec(e)
+                print_error("")
+                raise e

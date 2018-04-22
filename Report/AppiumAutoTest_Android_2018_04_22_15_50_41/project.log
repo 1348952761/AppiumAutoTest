@@ -1,0 +1,20 @@
+2018-04-22 15:50:41,753 INFO :Logger is initialized
+2018-04-22 15:50:41,760 DEBUG :POST http://127.0.0.1:4723/wd/hub/session {"capabilities": {"alwaysMatch": {"platformName": "Android"}, "firstMatch": [{}]}, "desiredCapabilities": {"deviceName": "192.168.22.101:5555", "device_port": "4723", "platformVersion": "6.0", "appPackage": "com.android.calculator2", "platformName": "Android", "appActivity": ".Calculator"}}
+2018-04-22 15:50:44,546 DEBUG :Finished Request
+2018-04-22 15:50:47,546 INFO :项目 初始化 成功！！！
+2018-04-22 15:50:47,546 INFO :点击 1 
+2018-04-22 15:50:47,548 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/elements {"using": "-android uiautomator", "sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "value": "new UiSelector().resourceId(\"com.android.calculator2:id/digit_1\")"}
+2018-04-22 15:50:47,596 DEBUG :Finished Request
+2018-04-22 15:50:47,596 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/element/1/size {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "id": "1"}
+2018-04-22 15:50:47,614 DEBUG :Finished Request
+2018-04-22 15:50:47,614 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/element/1/size {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "id": "1"}
+2018-04-22 15:50:47,630 DEBUG :Finished Request
+2018-04-22 15:50:47,630 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/element/1/location {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "id": "1"}
+2018-04-22 15:50:47,644 DEBUG :Finished Request
+2018-04-22 15:50:47,644 DEBUG :GET http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/element/1/location {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "id": "1"}
+2018-04-22 15:50:47,655 DEBUG :Finished Request
+2018-04-22 15:50:47,657 DEBUG :POST http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40/touch/perform {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40", "actions": [{"action": "tap", "options": {"y": 1901, "x": 208, "count": 1}}]}
+2018-04-22 15:50:47,772 DEBUG :Finished Request
+2018-04-22 15:50:51,773 INFO :Step 1: 点击 + 号
+2018-04-22 15:50:51,773 DEBUG :DELETE http://127.0.0.1:4723/wd/hub/session/3598ab24-9731-4ef8-be81-c5131334ff40 {"sessionId": "3598ab24-9731-4ef8-be81-c5131334ff40"}
+2018-04-22 15:50:52,941 DEBUG :Finished Request
