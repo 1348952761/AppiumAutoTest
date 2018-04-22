@@ -16,6 +16,10 @@ desired_capabilities = {
 driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_capabilities)
 time.sleep(10)
 try:
+    # driver.find_elements_by_android_uiautomator("new UiSelector().resourceId(\"%s\")" % "com.android.calculator2:id/digit_1")
+    driver.find_elements_by_android_uiautomator(
+        r'''new UiSelector().resourceId("com.android.calculator2:id/digit_1")''')
+
     driver.find_element_by_id("com.android.calculator2:id/digit_1").click()
     time.sleep(3)
     driver.find_element_by_id("com.android.calculator2:id/op_add").click()
